@@ -14,3 +14,8 @@ Take the example of a LUN with the following NAA number:
 
 naa.60a98000486e542d4f5a2f47694d684b
 
+## Log into an ISCSI Target
+iscsiadm --mode discovery -t sendtargets --portal <ipaddress>
+  
+iscsiadm --mode node --targetname  <iqn output from command above>  --portal <ipaddress> --login
+
