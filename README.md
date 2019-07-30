@@ -7,7 +7,10 @@
 
 ## Convert NetApp Volume Serial to NAA
 lun serial -x /vol/test/lun
+
 Serial (hex)#: 0x486e542d4f5a2f47694d684b
+
 Take the example of a LUN with the following NAA number:
+
 naa.60a98000486e542d4f5a2f47694d684b
 
