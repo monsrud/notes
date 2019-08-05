@@ -18,4 +18,38 @@ naa.60a98000486e542d4f5a2f47694d684b
 iscsiadm --mode discovery -t sendtargets --portal <ipaddress>
   
 iscsiadm --mode node --targetname  <iqn output from command above>  --portal <ipaddress> --login
+  
+  
+##Create a Unit/Service in Create the /usr/lib/systemd/system/myservice.service with the following content
+
+[Unit]
+Description=A service that does something
+
+[Service]
+Type=simple
+ExecStart=/my/path/myservice.sh
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+##Create the /usr/lib/systemd/system/myservice.timer file with the following content:
+
+[Unit]
+Description=Execute backup every day at midnight
+
+[Timer]
+OnCalendar=*-*-* 00:00:00
+Unit=myservice.service
+
+[Install]
+WantedBy=multi-user.target
+
+
+##Enable and start the timer service:
+
+chmod ugo+x /my/path/myservice.sh
+systemctl enable myservice.timer
+systemctl start myservice.timer
 
