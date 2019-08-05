@@ -20,7 +20,7 @@ iscsiadm --mode discovery -t sendtargets --portal <ipaddress>
 iscsiadm --mode node --targetname  <iqn output from command above>  --portal <ipaddress> --login
   
   
-##Create a Unit/Service in Create the /usr/lib/systemd/system/myservice.service with the following content
+## Create a Unit/Service in Create the /usr/lib/systemd/system/myservice.service with the following content
 
 [Unit]
 Description=A service that does something
@@ -34,7 +34,7 @@ WantedBy=multi-user.target
 
 
 
-##Create the /usr/lib/systemd/system/myservice.timer file with the following content:
+## Create the /usr/lib/systemd/system/myservice.timer file with the following content:
 
 [Unit]
 Description=Execute backup every day at midnight
@@ -47,7 +47,7 @@ Unit=myservice.service
 WantedBy=multi-user.target
 
 
-##Enable and start the timer service:
+## Enable and start the timer service:
 
 chmod ugo+x /my/path/myservice.sh
 systemctl enable myservice.timer
