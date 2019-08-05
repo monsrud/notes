@@ -21,7 +21,7 @@ iscsiadm --mode node --targetname  <iqn output from command above>  --portal <ip
   
   
 ## Create a Unit/Service in Create the /usr/lib/systemd/system/myservice.service with the following content
-
+```
 [Unit]
 Description=A service that does something
 
@@ -31,11 +31,11 @@ ExecStart=/my/path/myservice.sh
 
 [Install]
 WantedBy=multi-user.target
-
+```
 
 
 ## Create the /usr/lib/systemd/system/myservice.timer file with the following content:
-
+```
 [Unit]
 Description=Execute backup every day at midnight
 
@@ -45,11 +45,11 @@ Unit=myservice.service
 
 [Install]
 WantedBy=multi-user.target
-
+```
 
 ## Enable and start the timer service:
-
+```
 chmod ugo+x /my/path/myservice.sh
 systemctl enable myservice.timer
 systemctl start myservice.timer
-
+```
