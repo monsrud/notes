@@ -20,7 +20,7 @@ iscsiadm --mode discovery -t sendtargets --portal <ipaddress>
 iscsiadm --mode node --targetname  <iqn output from command above>  --portal <ipaddress> --login
   
   
-## Create a Unit/Service in Create the /usr/lib/systemd/system/myservice.service with the following content
+## Create the Unit/Service /usr/lib/systemd/system/myservice.service file with the following content:
 ```
 [Unit]
 Description=A service that does something
