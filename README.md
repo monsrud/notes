@@ -63,6 +63,7 @@ are the steps you may run afterward to install grub to the new disk and also cop
 mbr from one disk to the other.
 
 ```
+dd if=/dev/sda of=/dev/sdb bs=512 count=1
 mount --bind /dev /mnt/dev 
 mount --bind /proc /mnt/proc 
 mount --bind /sys /mnt/sys
