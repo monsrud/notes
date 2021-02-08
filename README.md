@@ -53,3 +53,23 @@ chmod ugo+x /my/path/myservice.sh
 systemctl enable myservice.timer
 systemctl start myservice.timer
 ```
+
+
+
+## Install grub to a second disk drive
+
+If you are trying to make a copy of an entire system like /dev/sda to /dev/sdb, these
+are the steps you may run afterward to install grub to the new disk and also copy the 
+mbr from one disk to the other.
+
+```
+mount --bind /dev /mnt/dev 
+mount --bind /proc /mnt/proc 
+mount --bind /sys /mnt/sys
+cd /mnt
+chroot .
+update-grub2
+grub-install /dev/sdb
+```
+
+
