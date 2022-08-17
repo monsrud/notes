@@ -143,4 +143,92 @@ printf "+------------------------------------------+--------------------+\n"
 
 ```
 
+  ## Clean Old Data from Zabbix Database
+  
+  ```
+  time mysql zabbix -e "
+RENAME TABLE history_uint TO history_uint_old;
+CREATE TABLE history_uint LIKE history_uint_old;
+SET SESSION SQL_LOG_BIN=0;
+INSERT INTO history_uint (
+SELECT * FROM history_uint_old WHERE clock >= UNIX_TIMESTAMP(
+\"$(date +%Y-%m-%d) 00:00:00\"
+)
+);
+DROP TABLE history_uint_old;
+"
+
+time mysql zabbix -e "
+RENAME TABLE history_str TO history_str_old;
+CREATE TABLE history_str LIKE history_str_old;
+SET SESSION SQL_LOG_BIN=0;
+INSERT INTO history_str (
+SELECT * FROM history_str_old WHERE clock >= UNIX_TIMESTAMP(
+\"$(date +%Y-%m-%d) 00:00:00\"
+)
+);
+DROP TABLE history_str_old;
+"
+
+time mysql zabbix -e "
+RENAME TABLE history_log TO history_log_old;
+CREATE TABLE history_log LIKE history_log_old;
+SET SESSION SQL_LOG_BIN=0;
+INSERT INTO history_log (
+SELECT * FROM history_log_old WHERE clock >= UNIX_TIMESTAMP(
+\"$(date +%Y-%m-%d) 00:00:00\"
+)
+);
+DROP TABLE history_log_old;
+"
+
+time mysql zabbix -e "
+RENAME TABLE history_text TO history_text_old;
+CREATE TABLE history_text LIKE history_text_old;
+SET SESSION SQL_LOG_BIN=0;
+INSERT INTO history_text (
+SELECT * FROM history_text_old WHERE clock >= UNIX_TIMESTAMP(
+\"$(date +%Y-%m-%d) 00:00:00\"
+)
+);
+DROP TABLE history_text_old;
+"
+
+time mysql zabbix -e "
+RENAME TABLE history TO history_old;
+CREATE TABLE history LIKE history_old;
+SET SESSION SQL_LOG_BIN=0;
+INSERT INTO history (
+SELECT * FROM history_old WHERE clock >= UNIX_TIMESTAMP(
+\"$(date +%Y-%m-%d) 00:00:00\"
+)
+);
+DROP TABLE history_old;
+"
+
+time mysql zabbix -e "
+RENAME TABLE trends_uint TO trends_uint_old;
+CREATE TABLE trends_uint LIKE trends_uint_old;
+SET SESSION SQL_LOG_BIN=0;
+INSERT INTO trends_uint (
+SELECT * FROM trends_uint_old WHERE clock >= UNIX_TIMESTAMP(
+\"$(date +%Y-%m-%d) 00:00:00\"
+)
+);
+DROP TABLE trends_uint_old;
+"
+
+time mysql zabbix -e "
+RENAME TABLE trends TO trends_old;
+CREATE TABLE trends LIKE trends_old;
+SET SESSION SQL_LOG_BIN=0;
+INSERT INTO trends (
+SELECT * FROM trends_old WHERE clock >= UNIX_TIMESTAMP(
+\"$(date +%Y-%m-%d) 00:00:00\"
+)
+);
+DROP TABLE trends_old;
+"
+
+  ```
 
