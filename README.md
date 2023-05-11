@@ -1,4 +1,12 @@
 
+
+## Verifying that a Certificate is issued by a CA
+How to use OpenSSL on the command line to verify that a certificate was issued by a specific CA, given that CA's certificate
+
+$ openssl verify -verbose -CAfile cacert.pem  server.crt
+server.crt: OK
+If you get any other message, the certificate was not issued by that CA.
+
 ## Test Authenticated Squid SSL Proxy with Curl
 
 * marshall@basement:~$ http_proxy='http://tester:password@172.22.1.62:3128'
