@@ -5,7 +5,7 @@
 1. Configure an rsyslog client to send its syslog to the server.
 2. Configure an rsyslog server to accept remote logs and log each host's logs into its own log file.
 
-###Client:
+### Client:
 
 On the client side, edit /etc/rsyslog.d/50-default.conf and enter the following at the bottom of the file:
 *.* @<syslogserverip>:514
@@ -14,7 +14,7 @@ Then restart rsyslog:
 systemctl restart rsyslog
 
 
-###Server:
+### Server:
 
 On the syslog server, toward the top of /etc/rsyslog.conf, enter the following two lines:
 
