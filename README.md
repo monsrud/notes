@@ -1,5 +1,47 @@
 
 
+## Configure a central rsyslog server
+
+1. Configure an rsyslog client to send its syslog to the server.
+2. Configure an rsyslog server to accept remote logs and log each host's logs into its own log file.
+
+###Client:
+
+On the client side, edit /etc/rsyslog.d/50-default.conf and enter the following at the bottom of the file:
+*.* @<syslogserverip>:514
+
+Then restart rsyslog:
+systemctl restart rsyslog
+
+
+###Server:
+
+On the syslog server, toward the top of /etc/rsyslog.conf, enter the following two lines:
+
+module(load="imudp")
+input(type="imudp" port="514" ruleset="RemoteLogs")
+
+You may uncomment the lines that are there regarding udp module/input. The important part is to 
+tie this input to a ruleset named RemoteLogs.
+
+Create a file: /etc/rsyslog.d/49-RemoteLogs.conf with the following contents:
+
+$template RemoteLogsTemplate,"/var/log/remote/%HOSTNAME%.log
+
+ruleset(name="RemoteLogs"){
+    *.* ?RemoteLogsTemplate
+}
+
+The directory /var/log/remote/ must be owned by syslog:adm and writable.
+
+mkdir -p /var/log/remote
+chown syslog:adm /var/log/remote
+
+Then, restart rsyslog:
+systemctl restart rsyslog
+
+
+
 ## Verifying that a Certificate is issued by a CA
 How to use OpenSSL on the command line to verify that a certificate was issued by a specific CA, given that CA's certificate
 
