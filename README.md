@@ -8,7 +8,8 @@
 ### Client:
 
 On the client side, edit /etc/rsyslog.d/50-default.conf and enter the following at the bottom of the file (use your syslog server's ip address):
-*.* @1.2.3.4:514
+
+        *.* @1.2.3.4:514
 
 Then restart rsyslog:
 systemctl restart rsyslog
@@ -26,10 +27,10 @@ tie this input to a ruleset named RemoteLogs.
 
 Create a file: /etc/rsyslog.d/49-RemoteLogs.conf with the following contents:
 
-ruleset(name="RemoteLogs"){
-    $template RemoteLogsTemplate,"/var/log/remote/%HOSTNAME%.log"
-    *.* ?RemoteLogsTemplate
-}
+        ruleset(name="RemoteLogs"){
+            $template RemoteLogsTemplate,"/var/log/remote/%HOSTNAME%.log"
+            *.* ?RemoteLogsTemplate
+        }
 
 The directory /var/log/remote/ must be owned by syslog:adm and writable.
 
