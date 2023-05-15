@@ -7,8 +7,8 @@
 
 ### Client:
 
-On the client side, edit /etc/rsyslog.d/50-default.conf and enter the following at the bottom of the file:
-*.* @<syslogserverip>:514
+On the client side, edit /etc/rsyslog.d/50-default.conf and enter the following at the bottom of the file (use your syslog server's ip address):
+*.* @1.2.3.4:514
 
 Then restart rsyslog:
 systemctl restart rsyslog
