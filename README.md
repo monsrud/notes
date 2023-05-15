@@ -26,15 +26,15 @@ tie this input to a ruleset named RemoteLogs.
 
 Create a file: /etc/rsyslog.d/49-RemoteLogs.conf with the following contents:
 
-$template RemoteLogsTemplate,"/var/log/remote/%HOSTNAME%.log
-
 ruleset(name="RemoteLogs"){
+    $template RemoteLogsTemplate,"/var/log/remote/%HOSTNAME%.log"
     *.* ?RemoteLogsTemplate
 }
 
 The directory /var/log/remote/ must be owned by syslog:adm and writable.
 
 mkdir -p /var/log/remote
+   
 chown syslog:adm /var/log/remote
 
 Then, restart rsyslog:
