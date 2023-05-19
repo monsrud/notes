@@ -1,6 +1,6 @@
 ## Configure a local postfix to relay mail to gmail 
 
-# Add to /etc/postfix/main.cf
+### Add to /etc/postfix/main.cf
 
 relayhost = smtp.gmail.com:587
 smtp_sasl_auth_enable = yes
@@ -8,12 +8,10 @@ smtp_sasl_password_maps=hash:/etc/postfix/sasl_passwd
 smtp_sasl_security_options = noanonymous
 smtp_use_tls = yes
 
-
-# Create /etc/postfix/sasl_passwd and run 'postmap /etc/postfix/sasl_passwd'
+### Create /etc/postfix/sasl_passwd and run 'postmap /etc/postfix/sasl_passwd'
 smtp.gmail.com:587 user@gmail.com:password
 
-
-# /etc/posfix/virtual
+### /etc/posfix/virtual
 # all mail that goes to @relay-mailer gets sent to the gmail user
 @relay-mailer user@gmail.com
 
