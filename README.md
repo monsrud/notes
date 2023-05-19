@@ -12,7 +12,7 @@ smtp_use_tls = yes
 smtp.gmail.com:587 user@gmail.com:password
 
 ### /etc/posfix/virtual
-# all mail that goes to @relay-mailer gets sent to the gmail user
+#### all mail that goes to @relay-mailer gets sent to the gmail user
 @relay-mailer user@gmail.com
 
 ## Configure a central rsyslog server
