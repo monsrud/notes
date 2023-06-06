@@ -1,3 +1,7 @@
+## Add a key for an apt repo
+
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys xxxxxx
+
 ## Configure a local postfix to relay mail to gmail 
 
 ### Add to /etc/postfix/main.cf
