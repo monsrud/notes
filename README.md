@@ -302,3 +302,18 @@ DROP TABLE trends_old;
 
   ```
 
+## Reclaim space on a VMware vmdk disk
+
+```
+Log into the virtual machine and run the following command:
+dd if=/dev/zero of=/mounted-volume/zeroes && rm -f /mounted-volume/zeroes
+
+Power off the virtual machine
+
+Log into esx CLI and navigate into the virtual machine's directory in /vmfs/volumes/.../
+
+Run the command:
+vmkfstools -K disk_name.vmdk using the name of your vmdk disk. Not the -flat.vmdk.
+
+```
+
